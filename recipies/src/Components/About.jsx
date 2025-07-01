@@ -24,19 +24,21 @@ const About = () => {
     }
     const recipie_cards = recipies.map((food, index) => {
         return (
-            <div key={index} className="flex flex-col items-center flex-wrap justify-around bg-amber-50 w-[30rem] p-[1rem] m-[2rem] rounded-xl">
+            <div key={index} className="flex flex-col items-center flex-wrap justify-around bg-amber-50 w-[25rem] p-[1rem] m-[2rem] rounded-xl">
                 <h1 className="text-[2.5rem] font-bold">{food.name}</h1>
-                <img alt={food.name} src={food.url} className="w-[20rem]" />
-                <h2>{food.rating}/10</h2>
-                <p>{food.description}</p>
-                <button onClick={() =>  handleClicking(food.name)} className="bg-amber-400 text-white p-[0.8rem] rounded-md">Learn More</button>
+                <div className="flex flex-col items-center">
+                    <img alt={food.name} src={food.url} className="w-[20rem]" />
+                    <h2>{food.rating}/10</h2>
+                    <p>{food.description}</p>
+                    <button onClick={() => handleClicking(food.name)} className="bg-amber-400 w-[100%] text-white p-[0.8rem] m-[1rem] rounded-md">Learn More</button>
+                </div>
             </div>
         )
     })
     return (
       <>
             <h1 className="text-center text-[5rem]">Let's meet some recipies</h1>
-            <div class="flex flex-row justify-around">
+            <div class="flex flex-row justify-between flex-wrap">
                 {recipie_cards}
             </div>
       </>
