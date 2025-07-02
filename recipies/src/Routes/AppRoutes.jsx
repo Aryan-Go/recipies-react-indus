@@ -8,7 +8,7 @@ import Form from "../Components/Form.jsx";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/*" element={<About />} />
+      <Route path="*" element={<About />} />
           <Route path="/" element = {<Favourites />} />
           <Route path="/about" element={<About />} />
           <Route path="/about/:name" element={<Recipies />}>
