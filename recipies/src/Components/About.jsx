@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 const About = () => {
     const navigate = useNavigate();
-    const [recipies, set_recipies] = useContext(todoWrapper);
+    const {recipies, set_recipies,favourites,set_favourites} = useContext(todoWrapper);
     console.log(recipies);
     const handleClicking = (name) => {
         toast.success(`Hmmm... tasty tasty ${name}`, {
@@ -30,15 +30,34 @@ const About = () => {
                     <img alt={food.name} src={food.url} className="w-[20rem]" />
                     <h2>{food.rating}/10</h2>
                     <p>{food.description}</p>
-                    <button onClick={() => handleClicking(food.name)} className="bg-amber-400 w-[100%] text-white p-[0.8rem] m-[1rem] rounded-md">Learn More</button>
+                    <button onClick={() => handleClicking(food.name)} className="bg-amber-400 w-[50%] text-white p-[0.8rem] m-[1rem] rounded-md">Learn More</button>
+                    <button onClick={() => handleFav(food)} className="bg-amber-400 w-[50%] text-white p-[0.8rem] m-[1rem] rounded-md">Add To Favourites</button>
                 </div>
             </div>
         )
     })
+    const handleFav = (food) => {
+        const food_item_fav = recipies.filter((x) => x === food)[0];
+        set_favourites((prev) => {
+            return [...prev, food_item_fav];
+        })
+        toast.success(`Hmmm... tasty tasty ${food.name} has been added to your favourites. Double mazza`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+        navigate(`/`);
+    }
     return (
       <>
             <h1 className="text-center text-[5rem]">Let's meet some recipies</h1>
-            <div class="flex flex-row justify-between flex-wrap">
+            <div className="flex flex-row justify-between flex-wrap">
                 {recipie_cards}
             </div>
       </>

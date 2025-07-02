@@ -7,7 +7,7 @@ import {useNavigate,useParams} from 'react-router-dom'
 
 const Form = () => {
     const navigate = useNavigate();
-    const [recipies, set_recipies] = useContext(todoWrapper);
+    const {recipies, set_recipies} = useContext(todoWrapper);
     const [steps, set_steps] = useState([]);
     const params = useParams();
     const { name } = params;

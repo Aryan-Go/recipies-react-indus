@@ -32,11 +32,13 @@ const Wrapper = (props) => {
                 "Once fried, immediately transfer the hot gulab jamuns into the warm sugar syrup. Let them soak for at least 1 hour so they become soft and absorb the syrup.",
                 "Serve warm or at room temperature, garnished with slivered almonds or pistachios if desired. Enjoy your rich and juicy gulab jamuns!"
               ]
-         }
+        }
+        
         
     ]);
+    const [favourites, set_favourites] = useState([]);
   return (
-        <todoWrapper.Provider value={[recipies,set_recipies]}>
+        <todoWrapper.Provider value={{recipies,set_recipies,favourites,set_favourites}}>
             {props.children}
         </todoWrapper.Provider>
   )

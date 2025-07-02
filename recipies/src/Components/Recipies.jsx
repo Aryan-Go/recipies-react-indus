@@ -6,7 +6,7 @@ const Recipies = () => {
     const navigate = useNavigate();
     const params = useParams();
     const { name } = params;
-    const [recipies, set_recipies] = useContext(todoWrapper);
+    const {recipies, set_recipies} = useContext(todoWrapper);
     const food = recipies.filter((x) => x.name === name)[0];
     console.log(food);
     const food_recipes_steps = food.recipies;

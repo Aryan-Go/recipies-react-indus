@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom'
 
 const Any = () => {
     const navigate = useNavigate();
-    const [recipies, set_recipies] = useContext(todoWrapper);
+    const {recipies, set_recipies} = useContext(todoWrapper);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState("");
