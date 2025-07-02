@@ -11,14 +11,14 @@ const Recipies = () => {
     console.log(food);
     const food_recipes_steps = food.recipies;
     const [color, set_color] = useState("bg-amber-50")
-    const handleDone = (index) => {
-        set_color("bg-green-200");
-    }
+    // const handleDone = (index) => {
+    //     set_color("bg-green-200");
+    // }
     const recipies_list = food_recipes_steps.map((step, index) => {
     return (
         <div key={index} className= {`p-[2rem] m-[2rem] rounded-xl ${color}`}>
             <p key={index} className="text-[2rem]">{step}</p>
-            <button onClick={() => handleDone(index)} className="bg-amber-400 text-white p-[0.8rem] m-[1rem] rounded-md">Done this step</button>
+            {/* <button onClick={() => handleDone(index)} className="bg-amber-400 text-white p-[0.8rem] m-[1rem] rounded-md">Done this step</button> */}
         </div>
         )
     })
