@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { todoWrapper } from '../Wrapper.jsx'
 import { Bounce,toast } from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
-
+import axios from "../axios_app/app_axios.jsx"
 
 const Any = () => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Any = () => {
     const [rating, setRating] = useState("");
     const [url, setUrl] = useState("");
     const [steps, setSteps] = useState([]);
-    const handleClicking = () => {
+    const handleClicking = async() => {
         const stepArray = steps.split(";");
         const food_item = {
             name: name,
@@ -22,9 +22,7 @@ const Any = () => {
             url: url,
             recipies: stepArray
         }
-        set_recipies((prev) => {
-            return [...prev, food_item];
-        })
+        await axios.post("add_rec", { recipie: food_item })
         toast.success(`${name} added. A new dish in the house`, {
                    position: "top-center",
                    autoClose: 5000,

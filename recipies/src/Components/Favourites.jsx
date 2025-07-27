@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useContext } from 'react'
 import { todoWrapper } from '../Wrapper.jsx'
 import { Bounce,toast } from 'react-toastify'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from "../axios_app/app_axios.jsx"
 
 const Favourites = () => {
     const navigate = useNavigate();
@@ -21,6 +22,13 @@ const Favourites = () => {
         });
         navigate(`/about/${name}`);
     }
+    useEffect(() => {
+        const get_data = async () => {
+            const response = await axios.get("bf");
+            await set_favourites(response.data.message);
+        }
+        get_data()
+    },[])
     const recipie_cards = favourites.map((food, index) => {
         return (
             <div key={index} className="flex flex-col items-center flex-wrap justify-around bg-pink-50 w-[25rem] p-[1rem] m-[2rem] rounded-xl">

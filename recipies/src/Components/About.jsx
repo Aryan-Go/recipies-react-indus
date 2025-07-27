@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useContext } from 'react'
 import { todoWrapper } from '../Wrapper.jsx'
 import { Bounce,toast } from 'react-toastify'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from "../axios_app/app_axios.jsx"
 
 const About = () => {
     const navigate = useNavigate();
@@ -36,11 +37,19 @@ const About = () => {
             </div>
         )
     })
-    const handleFav = (food) => {
+    useEffect(() => {
+        const get_recipies = async () => {
+            const response = await axios.get("get_reci")
+            set_recipies(response.data.message)
+        }
+        get_recipies()
+    },[])
+    const handleFav = async(food) => {
         const food_item_fav = recipies.filter((x) => x === food)[0];
-        set_favourites((prev) => {
-            return [...prev, food_item_fav];
-        })
+        await axios.post("gf", {fav : food_item_fav});
+        const response = await axios.get("bf");
+        await set_favourites(response.data.message);
+        console.log("Data has been sent  " , response)
         toast.success(`Hmmm... tasty tasty ${food.name} has been added to your favourites. Double mazza`, {
             position: "top-center",
             autoClose: 5000,
