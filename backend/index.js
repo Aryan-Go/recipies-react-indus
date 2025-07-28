@@ -5,7 +5,7 @@ import { main,add_fav,get_fav,add_rec,get_rec } from "./config/database.js"
 main()
 
 import cors from "cors"
-var whitelist = ["https://recipies-front.onrender.com/"];
+var whitelist = ["http://recipies-front.onrender.com/"];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
