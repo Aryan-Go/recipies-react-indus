@@ -1,6 +1,9 @@
 import { Client } from "pg"
+import dotenv from "dotenv"
+dotenv.config()
+const link = process.env.db_link
 const pgClient = new Client(
-  "postgresql://neondb_owner:npg_rcRZ1hCXMEs7@ep-plain-boat-a1dei6dt-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+ link
 );
 
 //! This is an asynchronous function that I am writing below thus await is important
@@ -41,4 +44,9 @@ export const get_rec = async () => {
   );
   console.log(data.rows);
   return data;
+};
+
+export const upd_Rec = async (id , recipies) => {
+  await pgClient.query(`UPDATE recipes SET recipes_array = ($1) WHERE food_id = ($2) `, [recipies, id])
+  console.log("Data has been updated successfully")
 };
